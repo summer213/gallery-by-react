@@ -11,7 +11,7 @@ start learn react
     (3) 安装generator ：npm install -g generator-react-webpack生成目录结构
     
     
-     [distcontent](http://github.com/summer213/gallery-by-react/raw/master/images/distcontent.png) 
+     [distcontent](https://github.com/summer213/gallery-by-react/raw/master/src/images/distcontent.png) 
      
      解释下目录：
      
