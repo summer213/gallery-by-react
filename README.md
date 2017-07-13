@@ -11,7 +11,7 @@ start learn react
     (3) 安装generator ：npm install -g generator-react-webpack生成目录结构
     
     
-     [distcontent](https://github.com/summer213/gallery-by-react/raw/master/src/images/distcontent.png) 
+     ![distcontent](https://github.com/summer213/gallery-by-react/raw/master/src/images/distcontent.png) 
      
      解释下目录：
      
@@ -24,12 +24,14 @@ start learn react
  2. 运行npm install安装依赖
  
  3. 在cfg目录下的defaults.js文件中，可以修改本地调试的端口号，默认是localhost:8000
-  [dist](https://github.com/summer213/gallery-by-react/raw/master/src/images/dist.png)
+ 
+  ![dist](https://github.com/summer213/gallery-by-react/raw/master/src/images/dist.png)
   
  4. 打开本地服务器，运行npm start 命令，可以在本地调试代码
  
  5. 运行后，若是出现webpack: Compiled successfully.，就表示大功告成了。
- [succeed](https://github.com/summer213/gallery-by-react/raw/master/src/images/success.png)
+ 
+ ![succeed](https://github.com/summer213/gallery-by-react/raw/master/src/images/success.png)
  
  6. webpack工具可以实时监听代码的修改，在文档修改保存后，浏览器会热加载，自动显示为最新效果
  
