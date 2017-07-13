@@ -89,7 +89,6 @@ var GalleryByReact = React.createClass( {
     imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex,1);
     // 首先居中centerIndex的图片
     imgsArrangeCenterArr[0].pos = centerPos;
-    console.log(centerPos);
     // 取出要布局上侧的图片的状态信息
     Math.ceil(Math.random()*(imgsArrangeArr.length - topImgNum));
     imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex,topImgNum);
@@ -187,7 +186,7 @@ var GalleryByReact = React.createClass( {
           }
         }
       }
-    imgFigures.push(<ImgFigure key={index} data={value} ref={"ImgFigure"+index} arrange={this.state.imgsArrangeArr[index]}/>);
+    imgFigures.push(<ImgFigure key={index} data={value} ref={'ImgFigure'+index} arrange={this.state.imgsArrangeArr[index]}/>);
     }.bind(this))
     return (
       /*<div className="index">
