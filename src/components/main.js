@@ -240,7 +240,7 @@ var GalleryByReact = React.createClass( {
     
     // var num = Math.floor(Math.random()*10);
     //         this.rearrange(num);
-    this.rearrange(0);
+    this.rearrange();
   },
   render() {
     var controllerUnits = [],imgFigures = [];
