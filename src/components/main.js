@@ -62,6 +62,9 @@ var ImgFigure = React.createClass( {
         styleObj['transform'] = 'rotate(' + value + this.props.arrange.rotate + 'deg)';
       }.bind(this));
     }
+    if(this.props.arrange.isCenter){
+      styleObj.zIndex = 11
+    }
     var imgFigureClassName = 'img-figure';
     imgFigureClassName += this.props.arrange.isInverse?' is-inverse':'';
     return (
