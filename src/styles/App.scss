@@ -1,10 +1,19 @@
 /* Base Application Styles */
-html,body {
-  width: 100%;
-  height: 100%;
-  background: #222;
+@font-face {font-family: "iconfont";
+  src: url('../fonts/icons/iconfont.eot'); /* IE9*/
+  src: url('../fonts/icons/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/icons/iconfont.woff') format('woff'), /* chrome, firefox */
+  url('../fonts/icons/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/icons/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-
+// .iconfont {
+//   font-family:"iconfont" !important;
+//   font-size:16px;
+//   font-style:normal;
+//   -webkit-font-smoothing: antialiased;
+//   -webkit-text-stroke-width: 0.2px;
+//   -moz-osx-font-smoothing: grayscale;
+// }
 .content{
   width: 100%;
   height: 100%;
@@ -37,12 +46,14 @@ html,body {
       background: #fff;
       // transition 当两种动画切换时的过渡动画
       transition: transform 0.6s ease-in-out, left 0.6s ease-in-out,top 0.6s ease-in-out;
+      transform-origin: 0 50% 0;
+
 
       box-sizing: border-box;
       transform-style: preserve-3d;
       cursor: pointer;
       &.is-inverse{
-        transform: rotateY(180deg);
+        transform: translate(320px) rotateY(180deg);
       }
       img{
         width: 240px;
@@ -78,6 +89,7 @@ html,body {
         /*先开始时.img-back，旋转了180度，因为translateZ(1px)，位于正面图像的下方*/
         /*当.img-figure旋转时，.img-back又旋转了180度，旋转度数为360,因为translateZ(1px)，位于正面图像的上方*/
         transform: rotateY(180deg) translateZ(1px);
+        backface-visibility: hidden;
       }
     }
   }
@@ -88,9 +100,44 @@ html,body {
 .controller-nav{
   position: relative;
   left: 0;
-  bottom: 30px;
+  bottom: 60px;
   z-index: 101;
   width: 100%;
   text-align: center;
+  @at-root{
+    .controller-unit{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 50%;
+      transform: scale(.5);
+      background: #aaa;
+      line-height: 31px;
+      vertical-align: middle;
+      transition: transform .6s ease-in-out,background-color .3s;
+      &.is-center{
+        transform: scale(1);
+        background: #888;
+        &::after{
+          font-family:"iconfont" !important;
+            font-size:23px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            content: '\e603';
+            color: #fff;
+            line-height: 23px;
+        }
+      }
+      &.is-inverse{
+        background-color: #555;
+        transform: rotateY(180deg);
+      }
+    }
+  }
 }
 // controller --end

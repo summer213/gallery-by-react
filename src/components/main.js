@@ -58,8 +58,8 @@ var ImgFigure = React.createClass( {
     }
     // 如过图片的旋转角度有值，且不为0，添加旋转角度
     if(this.props.arrange.rotate){
-      (['-moz-','-ms-','-webkit-','']).forEach(function(value){
-        styleObj['transform'] = 'rotate(' + value + this.props.arrange.rotate + 'deg)';
+      (['MozTransform','msTransform','WebkitTransform','transform']).forEach(function(value){
+        styleObj[value] = 'rotate('+ this.props.arrange.rotate + 'deg)';
       }.bind(this));
     }
     if(this.props.arrange.isCenter){
@@ -78,6 +78,34 @@ var ImgFigure = React.createClass( {
         </figcaption>
       </figure>
     );
+  }
+});
+// 控制组件
+var ControllerUnit = React.createClass({
+  handleClick:function(e){
+    // 如果点击的是当前正在选中态的按钮，则翻转图片，否则将图片居中
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center()
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+  },
+  render(){
+    var ControllerUnitClassName = 'controller-unit';
+    // 如果对应的是居中的图片，显示控制按钮的居中态
+    if(this.props.arrange.isCenter){
+      ControllerUnitClassName += ' is-center';
+      // 如果同时对应的是翻转图片，显示控制按钮的翻转态
+      if(this.props.arrange.isInverse){
+        ControllerUnitClassName += ' is-inverse';
+      }
+    }
+    return (
+      <span className={ControllerUnitClassName} onClick={this.handleClick}></span>
+    )
   }
 })
 var GalleryByReact = React.createClass( {
@@ -125,7 +153,7 @@ var GalleryByReact = React.createClass( {
     vPosRangeX = vPosRange.x,
 
     imgsArrangeTopArr = [],
-    topImgNum = Math.ceil(Math.random()*2),//取一个或者不取
+    topImgNum = Math.floor(Math.random()*2),//取一个或者不取
     topImgSpliceIndex = 0,
     imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex,1);
     // 首先居中centerIndex的图片
@@ -170,6 +198,7 @@ var GalleryByReact = React.createClass( {
         isCenter:false
       }
     }
+    
     if(imgsArrangeTopArr && imgsArrangeTopArr[0]){
       imgsArrangeArr.splice(topImgSpliceIndex,0,imgsArrangeTopArr[0]);
     }
@@ -256,8 +285,9 @@ var GalleryByReact = React.createClass( {
           isCenter:false
         }
       }
-    imgFigures.push(<ImgFigure key={index} data={value} ref={'ImgFigure'+index} arrange={this.state.imgsArrangeArr[index]} inverse = {this.inverse(index)} center={this.center(index)}/>);
-    }.bind(this))
+      imgFigures.push(<ImgFigure key={index} data={value} ref={'ImgFigure'+index} arrange={this.state.imgsArrangeArr[index]} inverse = {this.inverse(index)} center={this.center(index)}/>);
+      controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]}  inverse = {this.inverse(index)} center={this.center(index)}/>);
+    }.bind(this));
     return (
       /*<div className="index">
         <img src={yeomanImage} alt="Yeoman Generator" />
